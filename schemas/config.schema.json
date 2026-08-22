@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/wzf1997/delivery-harness/main/schemas/config.schema.json",
+  "title": "DeliveryGuard configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "project", "stableBranch", "repositories", "environments", "documentTypes", "paths", "policies"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "name": { "$ref": "#/$defs/nonEmpty" }
+      }
+    },
+    "stableBranch": { "$ref": "#/$defs/nonEmpty" },
+    "repositories": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "required"],
+        "properties": {
+          "id": { "$ref": "#/$defs/id" },
+          "path": { "$ref": "#/$defs/repoPath" },
+          "remote": { "type": "string", "minLength": 1 },
+          "required": { "type": "boolean" }
+        },
+        "anyOf": [{ "required": ["path"] }, { "required": ["remote"] }]
+      }
+    },
+    "environments": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind"],
+        "properties": {
+          "id": { "$ref": "#/$defs/id" },
+          "kind": { "enum": ["development", "test", "staging", "production"] }
+        }
+      }
+    },
+    "documentTypes": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/id" }
+    },
+    "paths": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["versions", "acceptance", "repairs", "openspec"],
+      "properties": {
+        "versions": { "$ref": "#/$defs/repoPath" },
+        "acceptance": { "$ref": "#/$defs/repoPath" },
+        "repairs": { "$ref": "#/$defs/repoPath" },
+        "openspec": { "$ref": "#/$defs/repoPath" }
+      }
+    },
+    "policies": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requireOpenSpec", "requireAcceptanceBeforeRelease", "requireDedicatedWorktree"],
+      "properties": {
+        "requireOpenSpec": { "type": "boolean" },
+        "requireAcceptanceBeforeRelease": { "type": "boolean" },
+        "requireDedicatedWorktree": { "type": "boolean" }
+      }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$" },
+    "nonEmpty": { "type": "string", "minLength": 1 },
+    "repoPath": {
+      "type": "string",
+      "minLength": 1,
+      "not": { "pattern": "^(?:/|~|[A-Za-z]:[\\\\/])|(?:^|/)\\.\\.(?:/|$)" }
+    }
+  }
+}

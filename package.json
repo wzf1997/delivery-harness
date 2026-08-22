@@ -1,0 +1,88 @@
+{
+  "name": "deliveryguard",
+  "version": "0.1.0",
+  "description": "Evidence-driven software delivery gates for specs, source, acceptance, repair, and release.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "wzf1997",
+    "email": "582344150@qq.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wzf1997/delivery-harness.git"
+  },
+  "homepage": "https://github.com/wzf1997/delivery-harness#readme",
+  "bugs": {
+    "url": "https://github.com/wzf1997/delivery-harness/issues"
+  },
+  "keywords": [
+    "delivery",
+    "release",
+    "acceptance",
+    "evidence",
+    "codex",
+    "openspec"
+  ],
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0"
+  },
+  "packageManager": "pnpm@11.19.0",
+  "bin": {
+    "deliveryguard": "./dist/cli.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "schemas",
+    "templates",
+    "docs/*.md",
+    "docs/assets/deliveryguard-avatar.png",
+    "docs/assets/deliveryguard-hero.webp",
+    "README.md",
+    "README.zh-CN.md",
+    "CONTRIBUTING.md",
+    "CONTRIBUTING.zh-CN.md",
+    "SECURITY.md",
+    "CODE_OF_CONDUCT.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "PROVENANCE.md",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "check:docs": "node scripts/check-doc-links.mjs",
+    "check:assets": "node scripts/check-assets.mjs",
+    "check:cli": "node scripts/smoke-cli.mjs",
+    "check:sensitive": "node scripts/check-sensitive.mjs",
+    "check": "pnpm typecheck && pnpm test && pnpm build && pnpm check:cli && pnpm check:docs && pnpm check:assets && pnpm check:sensitive",
+    "prepack": "pnpm check"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "commander": "^14.0.2"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.29.7",
+    "@types/node": "^24.10.1",
+    "@vitest/coverage-v8": "^4.0.15",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.15"
+  },
+  "publishConfig": {
+    "provenance": true
+  }
+}

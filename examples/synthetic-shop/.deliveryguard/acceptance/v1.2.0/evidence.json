@@ -1,0 +1,35 @@
+{
+  "$schema": "../../../../../schemas/evidence.schema.json",
+  "schemaVersion": 1,
+  "version": "v1.2.0",
+  "documents": [
+    { "documentId": "checkout-prd", "requirementIds": ["retry-safe"] },
+    { "documentId": "checkout-design", "requirementIds": ["retry-safe", "traceable-key"] }
+  ],
+  "requirements": [
+    {
+      "id": "retry-safe",
+      "description": "Repeated checkout requests create exactly one order",
+      "caseIds": ["repeat-request"]
+    },
+    {
+      "id": "traceable-key",
+      "description": "Every checkout attempt records its idempotency key",
+      "caseIds": ["audit-key"]
+    }
+  ],
+  "cases": [
+    {
+      "id": "repeat-request",
+      "title": "Repeated request returns the original order",
+      "status": "pass",
+      "evidence": ["docs/evidence/repeat-request.txt"]
+    },
+    {
+      "id": "audit-key",
+      "title": "Audit event contains the idempotency key",
+      "status": "pass",
+      "evidence": ["docs/evidence/audit-key.txt"]
+    }
+  ]
+}

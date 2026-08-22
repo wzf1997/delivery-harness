@@ -1,0 +1,25 @@
+{
+  "$schema": "./schemas/config.schema.json",
+  "schemaVersion": 1,
+  "project": { "id": "deliveryguard", "name": "DeliveryGuard" },
+  "stableBranch": "main",
+  "repositories": [
+    { "id": "deliveryguard", "path": ".", "remote": "https://github.com/wzf1997/delivery-harness.git", "required": true }
+  ],
+  "environments": [
+    { "id": "ci", "kind": "test" },
+    { "id": "npm", "kind": "production" }
+  ],
+  "documentTypes": ["product-requirement", "technical-design", "issue-report"],
+  "paths": {
+    "versions": ".deliveryguard/versions",
+    "acceptance": ".deliveryguard/acceptance",
+    "repairs": ".deliveryguard/repairs",
+    "openspec": "openspec/changes"
+  },
+  "policies": {
+    "requireOpenSpec": true,
+    "requireAcceptanceBeforeRelease": true,
+    "requireDedicatedWorktree": true
+  }
+}

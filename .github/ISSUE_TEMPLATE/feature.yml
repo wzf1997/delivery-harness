@@ -1,0 +1,18 @@
+name: Feature request
+description: Propose a generic delivery workflow capability
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Delivery problem
+      description: Explain the missing fact, gate, or integration seam.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Desired evidence and outcome
+    validations:
+      required: true

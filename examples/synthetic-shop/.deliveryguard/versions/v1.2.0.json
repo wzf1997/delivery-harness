@@ -1,0 +1,62 @@
+{
+  "$schema": "../../../../schemas/version.schema.json",
+  "schemaVersion": 1,
+  "version": "v1.2.0",
+  "title": "Idempotent checkout",
+  "documents": [
+    {
+      "id": "checkout-prd",
+      "type": "product-requirement",
+      "title": "Idempotent checkout",
+      "ref": "docs/requirements/checkout.md",
+      "revision": 3,
+      "primary": true
+    },
+    {
+      "id": "checkout-design",
+      "type": "technical-design",
+      "title": "Checkout idempotency design",
+      "ref": "docs/design/checkout-idempotency.md",
+      "revision": 2
+    }
+  ],
+  "openSpec": {
+    "changeId": "idempotent-checkout",
+    "path": "openspec/changes/idempotent-checkout",
+    "status": "applied"
+  },
+  "sources": [
+    { "repositoryId": "storefront", "branch": "feature/idempotent-checkout", "commit": "a1b2c3d", "status": "merged" },
+    { "repositoryId": "orders-api", "branch": "feature/idempotent-checkout", "commit": "d4e5f6a", "status": "merged" }
+  ],
+  "acceptance": {
+    "status": "passed",
+    "evidence": ".deliveryguard/acceptance/v1.2.0/evidence.json",
+    "report": "docs/acceptance/v1.2.0.md"
+  },
+  "deployments": [
+    {
+      "repositoryId": "storefront",
+      "environmentId": "production",
+      "branch": "release/v1.2.0",
+      "commit": "a1b2c3d",
+      "status": "succeeded",
+      "anchor": "pipeline-storefront-120",
+      "recordedAt": "2026-01-18T09:00:00.000Z"
+    },
+    {
+      "repositoryId": "orders-api",
+      "environmentId": "production",
+      "branch": "release/v1.2.0",
+      "commit": "d4e5f6a",
+      "status": "succeeded",
+      "anchor": "pipeline-orders-120",
+      "recordedAt": "2026-01-18T09:05:00.000Z"
+    }
+  ],
+  "release": {
+    "status": "published",
+    "anchor": "release-v1.2.0",
+    "releasedAt": "2026-01-18T09:10:00.000Z"
+  }
+}

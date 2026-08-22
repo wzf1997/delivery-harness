@@ -1,0 +1,23 @@
+{
+  "$schema": "https://raw.githubusercontent.com/wzf1997/delivery-harness/main/schemas/config.schema.json",
+  "schemaVersion": 1,
+  "project": { "id": "your-project", "name": "Your Project" },
+  "stableBranch": "main",
+  "repositories": [{ "id": "app", "path": ".", "required": true }],
+  "environments": [
+    { "id": "test", "kind": "test" },
+    { "id": "production", "kind": "production" }
+  ],
+  "documentTypes": ["product-requirement", "technical-design", "issue-report"],
+  "paths": {
+    "versions": ".deliveryguard/versions",
+    "acceptance": ".deliveryguard/acceptance",
+    "repairs": ".deliveryguard/repairs",
+    "openspec": "openspec/changes"
+  },
+  "policies": {
+    "requireOpenSpec": true,
+    "requireAcceptanceBeforeRelease": true,
+    "requireDedicatedWorktree": true
+  }
+}

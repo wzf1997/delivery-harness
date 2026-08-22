@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/wzf1997/delivery-harness/main/schemas/version.schema.json",
+  "title": "DeliveryGuard version record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "version", "title", "documents", "sources", "acceptance", "deployments", "release"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "version": { "type": "string", "pattern": "^v(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)$" },
+    "title": { "$ref": "#/$defs/nonEmpty" },
+    "documents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "type", "title", "ref"],
+        "properties": {
+          "id": { "$ref": "#/$defs/id" },
+          "type": { "$ref": "#/$defs/id" },
+          "title": { "$ref": "#/$defs/nonEmpty" },
+          "ref": { "$ref": "#/$defs/nonEmpty" },
+          "primary": { "type": "boolean" },
+          "revision": { "type": ["string", "number"] }
+        }
+      }
+    },
+    "openSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["changeId", "path", "status"],
+      "properties": {
+        "changeId": { "$ref": "#/$defs/id" },
+        "path": { "$ref": "#/$defs/repoPath" },
+        "status": { "enum": ["proposed", "ready", "applied", "archived"] }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["repositoryId", "branch", "commit", "status"],
+        "properties": {
+          "repositoryId": { "$ref": "#/$defs/id" },
+          "branch": { "$ref": "#/$defs/nonEmpty" },
+          "commit": { "$ref": "#/$defs/commit" },
+          "status": { "enum": ["local", "submitted", "merged"] }
+        }
+      }
+    },
+    "acceptance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": { "enum": ["pending", "passed", "failed", "blocked"] },
+        "evidence": { "$ref": "#/$defs/repoPath" },
+        "report": { "type": "string", "minLength": 1 }
+      }
+    },
+    "deployments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["repositoryId", "environmentId", "branch", "commit", "status", "anchor", "recordedAt"],
+        "properties": {
+          "repositoryId": { "$ref": "#/$defs/id" },
+          "environmentId": { "$ref": "#/$defs/id" },
+          "branch": { "$ref": "#/$defs/nonEmpty" },
+          "commit": { "$ref": "#/$defs/commit" },
+          "status": { "enum": ["started", "succeeded", "failed", "rolled-back"] },
+          "anchor": { "$ref": "#/$defs/nonEmpty" },
+          "recordedAt": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "release": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": { "enum": ["pending", "published", "failed", "rolled-back"] },
+        "anchor": { "$ref": "#/$defs/nonEmpty" },
+        "releasedAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$" },
+    "nonEmpty": { "type": "string", "minLength": 1 },
+    "commit": { "type": "string", "pattern": "^[0-9a-fA-F]{7,40}$" },
+    "repoPath": {
+      "type": "string",
+      "minLength": 1,
+      "not": { "pattern": "^(?:/|~|[A-Za-z]:[\\\\/])|(?:^|/)\\.\\.(?:/|$)" }
+    }
+  }
+}

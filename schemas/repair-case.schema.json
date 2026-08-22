@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/wzf1997/delivery-harness/main/schemas/repair-case.schema.json",
+  "title": "DeliveryGuard repair case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "id", "title", "stage", "status", "classification", "symptom", "phases"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "id": { "type": "string", "pattern": "^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)+$" },
+    "title": { "$ref": "#/$defs/nonEmpty" },
+    "stage": { "enum": ["reported", "reproduced", "diagnosed", "resolved", "verified", "closed"] },
+    "status": { "enum": ["active", "blocked", "done", "wont-fix", "duplicate"] },
+    "classification": { "enum": ["code", "requirement-gap", "configuration", "data", "external-dependency", "test-infrastructure", "unknown"] },
+    "baseline": { "$ref": "#/$defs/gitRef" },
+    "candidate": { "$ref": "#/$defs/gitRef" },
+    "symptom": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["environment", "expected", "actual"],
+      "properties": {
+        "environment": { "$ref": "#/$defs/nonEmpty" },
+        "expected": { "$ref": "#/$defs/nonEmpty" },
+        "actual": { "$ref": "#/$defs/nonEmpty" }
+      }
+    },
+    "phases": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reproduction", "targeted", "regression"],
+      "properties": {
+        "reproduction": { "$ref": "#/$defs/checks" },
+        "targeted": { "$ref": "#/$defs/checks" },
+        "regression": { "$ref": "#/$defs/checks" }
+      }
+    }
+  },
+  "$defs": {
+    "nonEmpty": { "type": "string", "minLength": 1 },
+    "commit": { "type": "string", "pattern": "^[0-9a-fA-F]{7,40}$" },
+    "repoPath": {
+      "type": "string",
+      "minLength": 1,
+      "not": { "pattern": "^(?:/|~|[A-Za-z]:[\\\\/])|(?:^|/)\\.\\.(?:/|$)" }
+    },
+    "gitRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "commit"],
+      "properties": {
+        "repository": { "$ref": "#/$defs/repoPath" },
+        "commit": { "$ref": "#/$defs/commit" }
+      }
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "command", "expectedExitCode"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$" },
+          "command": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmpty" } },
+          "cwd": { "$ref": "#/$defs/repoPath" },
+          "expectedExitCode": { "type": "integer", "minimum": 0, "maximum": 255 },
+          "outputPattern": { "type": "string" },
+          "timeoutMs": { "type": "integer", "minimum": 1000, "maximum": 1800000 }
+        }
+      }
+    }
+  }
+}

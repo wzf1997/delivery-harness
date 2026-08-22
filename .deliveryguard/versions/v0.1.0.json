@@ -1,0 +1,24 @@
+{
+  "$schema": "../../schemas/version.schema.json",
+  "schemaVersion": 1,
+  "version": "v0.1.0",
+  "title": "DeliveryGuard developer preview",
+  "documents": [
+    {
+      "id": "developer-preview",
+      "type": "product-requirement",
+      "title": "DeliveryGuard v0.1.0 developer preview",
+      "ref": "docs/requirements/v0.1.0.md",
+      "primary": true
+    }
+  ],
+  "openSpec": {
+    "changeId": "deliveryguard-v0-1",
+    "path": "openspec/changes/deliveryguard-v0-1",
+    "status": "ready"
+  },
+  "sources": [],
+  "acceptance": { "status": "pending" },
+  "deployments": [],
+  "release": { "status": "pending" }
+}

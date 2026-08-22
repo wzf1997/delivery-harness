@@ -1,0 +1,27 @@
+{
+  "$schema": "../../../../../schemas/repair-case.schema.json",
+  "schemaVersion": 1,
+  "id": "SHOP-101",
+  "title": "Parallel retries create duplicate orders",
+  "stage": "verified",
+  "status": "done",
+  "classification": "code",
+  "baseline": { "repository": ".", "commit": "1111111" },
+  "candidate": { "repository": ".", "commit": "2222222" },
+  "symptom": {
+    "environment": "test",
+    "expected": "Parallel retries return one order",
+    "actual": "Two orders are created"
+  },
+  "phases": {
+    "reproduction": [
+      { "id": "duplicate-red", "command": ["node", "tests/retry.mjs"], "expectedExitCode": 1, "timeoutMs": 30000 }
+    ],
+    "targeted": [
+      { "id": "duplicate-green", "command": ["node", "tests/retry.mjs"], "expectedExitCode": 0, "timeoutMs": 30000 }
+    ],
+    "regression": [
+      { "id": "checkout-regression", "command": ["node", "tests/checkout.mjs"], "expectedExitCode": 0, "timeoutMs": 30000 }
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+name: Bug report
+description: Report reproducible DeliveryGuard behavior
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Observed behavior
+      description: Describe what happened and what you expected.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal synthetic reproduction
+      description: Do not include private files, credentials, personal data, or internal URLs.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: DeliveryGuard and Node versions
+    validations:
+      required: true

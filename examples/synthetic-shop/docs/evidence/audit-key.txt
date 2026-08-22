@@ -1,0 +1,1 @@
+PASS: the synthetic audit event contains the test idempotency key.
