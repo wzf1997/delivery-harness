@@ -22,7 +22,7 @@
       "repositoryId": "deliveryguard",
       "branch": "main",
       "commit": "05f34f5",
-      "status": "local"
+      "status": "submitted"
     }
   ],
   "acceptance": { "status": "pending" },
