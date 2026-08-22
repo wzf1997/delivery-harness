@@ -7,3 +7,5 @@ The project's open-source presentation is inspired by the clarity of the [DeepSe
 All examples use fictional names, `.invalid` domains, inert commit identifiers, and synthetic evidence.
 
 The bundled Codex skills are clean-room abstractions of recurring workflow classes such as specification, acceptance, repair, route review, fixture planning, read-only evidence review, and release closure. No source skill file, proprietary vocabulary, private endpoint, enterprise connector, production coordinate, or business-specific script is included.
+
+The installed `AGENTS.md` contract was independently rewritten around generic authorization, evidence, versioning, acceptance, repair, release, Git safety, and completion principles. It contains no source repository map, organization-specific policy, private system name, or operational coordinate.

@@ -4,4 +4,5 @@
 - [x] Validate the synthetic project and packaged install.
 - [x] Complete the security and provenance audit.
 - [x] Bundle and validate the clean-room Codex workflow skill suite.
+- [x] Package a clean-room repository instruction contract for coding agents.
 - [ ] Publish the GitHub repository and npm package.

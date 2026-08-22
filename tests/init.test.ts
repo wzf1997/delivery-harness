@@ -11,6 +11,8 @@ describe("init", () => {
     const root = mkdtempSync(join(tmpdir(), "deliveryguard-init-"));
     const created = initializeProject(root, true);
     expect(created).toContain("deliveryguard.config.json");
+    expect(created).toContain("AGENTS.md");
+    expect(readFileSync(join(root, "AGENTS.md"), "utf8")).toContain("DeliveryGuard facts");
     expect(readFileSync(join(root, ".agents/skills/deliveryguard-version/SKILL.md"), "utf8")).toContain("DeliveryGuard");
     expect(
       readdirSync(join(root, ".agents/skills"), { withFileTypes: true }).filter((entry) => entry.isDirectory()),

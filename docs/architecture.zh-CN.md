@@ -10,7 +10,7 @@ DeliveryGuard 是文件驱动的校验工具。它读取仓库内事实、推导
 2. **语义校验器**：检查唯一标识、完整文档覆盖、仓库引用、OpenSpec 状态、red/green 提交和生产部署覆盖。
 3. **阶段推导**：从事实计算 `planned`、`specified`、`implemented`、`verified` 或 `released`，不接受人工覆盖。
 4. **CLI 与 TypeScript API**：共享同一套校验器，`--json` 是自动化集成接口。
-5. **适配层**：[Codex Skill 套件](codex-skills.zh-CN.md)与 OpenSpec 等仓库内容负责准备事实，但不能绕过核心门禁，也不能代表核心执行外部写入。
+5. **Harness 层**：安装后的 `AGENTS.md`、[Codex Skill 套件](codex-skills.zh-CN.md)与 OpenSpec 共同约束 Agent 如何准备事实，但不能绕过核心门禁，也不能代表核心执行外部写入。
 
 ## 门禁模型
 
