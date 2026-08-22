@@ -2,6 +2,8 @@
 
 `deliveryguard init --codex` installs 17 repository-local skills. They are clean-room, provider-neutral rewrites of recurring delivery practices; no private connector, endpoint, environment coordinate, business schema, account, or production action is included.
 
+DeliveryGuard dogfoods the suite from [`.agents/skills`](../.agents/skills). The packaged initializer mirror lives under `templates/codex`; automated tests reject any difference between the two trees.
+
 | Skill | Purpose |
 | --- | --- |
 | `deliveryguard-version` | Register version scope and source documents |

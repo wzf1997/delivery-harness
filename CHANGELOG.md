@@ -4,6 +4,7 @@
 
 - Expand `init --codex` to install 17 clean-room, provider-neutral delivery workflow skills.
 - Add reusable acceptance evidence guidance and synthetic fixture-planning guidance.
+- Install the same skill suite at repository-root `.agents/skills` for direct discovery and enforce mirror consistency in tests.
 
 All notable changes follow Semantic Versioning.
 

@@ -2,6 +2,8 @@
 
 `deliveryguard init --codex` 会安装 17 个仓库级 Skill。它们是对常用交付实践的 clean-room、供应商无关重写，不包含私有连接器、端点、环境坐标、业务 Schema、账号或生产操作。
 
+DeliveryGuard 自身使用 [`.agents/skills`](../.agents/skills) 中的这套 Skill。npm 初始化模板镜像位于 `templates/codex`；自动化测试会拒绝两个目录之间的任何差异。
+
 | Skill | 用途 |
 | --- | --- |
 | `deliveryguard-version` | 登记版本范围与需求文档 |

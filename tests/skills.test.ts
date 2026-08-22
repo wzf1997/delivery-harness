@@ -4,12 +4,20 @@ import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 
 const skillsRoot = resolve("templates/codex/.agents/skills");
+const repositorySkillsRoot = resolve(".agents/skills");
 
-function skillDirectories(): string[] {
-  return readdirSync(skillsRoot, { withFileTypes: true })
+function skillDirectories(root = skillsRoot): string[] {
+  return readdirSync(root, { withFileTypes: true })
     .filter((entry) => entry.isDirectory())
     .map((entry) => entry.name)
     .sort();
+}
+
+function filesBelow(root: string, directory = root): string[] {
+  return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const target = resolve(directory, entry.name);
+    return entry.isDirectory() ? filesBelow(root, target) : [target.slice(root.length + 1)];
+  });
 }
 
 describe("bundled Codex skills", () => {
@@ -29,6 +37,15 @@ describe("bundled Codex skills", () => {
       expect(contents).not.toMatch(/https?:\/\//i);
       expect(contents).not.toMatch(/\/Users\/|[A-Za-z]:\\Users\\/);
       expect(contents).not.toMatch(/(?:token|secret|password)\s*[:=]\s*\S+/i);
+    }
+  });
+
+  it("keeps repository-discoverable skills identical to packaged templates", () => {
+    expect(skillDirectories(repositorySkillsRoot)).toEqual(skillDirectories());
+    const packagedFiles = filesBelow(skillsRoot).sort();
+    expect(filesBelow(repositorySkillsRoot).sort()).toEqual(packagedFiles);
+    for (const file of packagedFiles) {
+      expect(readFileSync(resolve(repositorySkillsRoot, file))).toEqual(readFileSync(resolve(skillsRoot, file)));
     }
   });
 });
