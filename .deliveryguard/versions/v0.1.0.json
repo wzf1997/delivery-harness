@@ -17,7 +17,14 @@
     "path": "openspec/changes/deliveryguard-v0-1",
     "status": "ready"
   },
-  "sources": [],
+  "sources": [
+    {
+      "repositoryId": "deliveryguard",
+      "branch": "main",
+      "commit": "981bdcc",
+      "status": "local"
+    }
+  ],
   "acceptance": { "status": "pending" },
   "deployments": [],
   "release": { "status": "pending" }
