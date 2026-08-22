@@ -33,7 +33,7 @@ describe("bundled Codex skills", () => {
   it("uses valid names and excludes private coordinates", () => {
     for (const directory of skillDirectories()) {
       const contents = readFileSync(resolve(skillsRoot, directory, "SKILL.md"), "utf8");
-      expect(contents).toMatch(/^---\nname: deliveryguard-[a-z0-9-]+\ndescription: .+\n---/);
+      expect(contents).toMatch(/^---\r?\nname: deliveryguard-[a-z0-9-]+\r?\ndescription: .+\r?\n---/);
       expect(contents).not.toMatch(/https?:\/\//i);
       expect(contents).not.toMatch(/\/Users\/|[A-Za-z]:\\Users\\/);
       expect(contents).not.toMatch(/(?:token|secret|password)\s*[:=]\s*\S+/i);

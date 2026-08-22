@@ -1,5 +1,5 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
-import { dirname, relative, resolve } from "node:path";
+import { dirname, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 function filesBelow(directory: string): string[] {
@@ -16,7 +16,7 @@ function templateDirectory(name: "default" | "codex"): string {
 export function initializeProject(root: string, codex = false): string[] {
   const templateRoots = [templateDirectory("default"), ...(codex ? [templateDirectory("codex")] : [])];
   const sources = templateRoots.flatMap((directory) =>
-    filesBelow(directory).map((source) => ({ source, relativePath: relative(directory, source) })),
+    filesBelow(directory).map((source) => ({ source, relativePath: relative(directory, source).split(sep).join("/") })),
   );
   for (const item of sources) {
     if (existsSync(resolve(root, item.relativePath))) throw new Error(`refusing to overwrite ${item.relativePath}`);

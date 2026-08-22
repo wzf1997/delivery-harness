@@ -14,7 +14,7 @@ function run(args, expected) {
 }
 
 const self = run(["check"], 0);
-if (!self.includes("v0.1.0: specified")) throw new Error("self-check did not report specified");
+if (!self.includes("v0.1.0: implemented")) throw new Error("self-check did not report implemented");
 
 const example = run(["-C", "examples/synthetic-shop", "check"], 0);
 if (!example.includes("v1.2.0: released")) throw new Error("synthetic example did not report released");

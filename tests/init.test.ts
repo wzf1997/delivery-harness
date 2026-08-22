@@ -10,6 +10,7 @@ describe("init", () => {
   it("creates config and optional Codex guidance", () => {
     const root = mkdtempSync(join(tmpdir(), "deliveryguard-init-"));
     const created = initializeProject(root, true);
+    expect(created.every((item) => !item.includes("\\"))).toBe(true);
     expect(created).toContain("deliveryguard.config.json");
     expect(created).toContain("AGENTS.md");
     expect(readFileSync(join(root, "AGENTS.md"), "utf8")).toContain("DeliveryGuard facts");
