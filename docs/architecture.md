@@ -10,7 +10,7 @@ DeliveryGuard is a file-based validation toolkit. It consumes repository facts, 
 2. **Semantic validators** enforce relationships that JSON Schema cannot express: unique identifiers, complete document coverage, valid repository references, OpenSpec readiness, red/green commits, and production deployment coverage.
 3. **Stage derivation** computes `planned`, `specified`, `implemented`, `verified`, or `released` from facts. The stage is never stored as an override.
 4. **CLI and TypeScript API** expose the same validators. `--json` output is the stable integration surface for automation.
-5. **Adapters** are repository content such as Codex skills and OpenSpec records. They prepare facts but cannot bypass core gates.
+5. **Adapters** are repository content such as the [Codex skill suite](codex-skills.md) and OpenSpec records. They prepare facts but cannot bypass core gates or perform external writes on behalf of the core.
 
 ## Gate model
 

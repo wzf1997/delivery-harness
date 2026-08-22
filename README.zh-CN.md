@@ -34,7 +34,7 @@ npx deliveryguard check
 npx deliveryguard status
 ```
 
-初始化不会覆盖已有文件。生成内容包括 `deliveryguard.config.json`、`.deliveryguard/`、`openspec/changes/` 和可选 Codex Skills。
+初始化不会覆盖已有文件。生成内容包括 `deliveryguard.config.json`、`.deliveryguard/`、`openspec/changes/`，以及覆盖完整交付流程的 17 个供应商无关 Codex Skills。
 
 ## 命令
 
@@ -58,7 +58,7 @@ npx deliveryguard status
 deliveryguard -C examples/synthetic-shop check
 ```
 
-继续阅读[架构说明](docs/architecture.zh-CN.md)、[配置参考](docs/configuration.zh-CN.md)和[品牌指南](docs/brand.zh-CN.md)。
+继续阅读[架构说明](docs/architecture.zh-CN.md)、[配置参考](docs/configuration.zh-CN.md)、[Codex Skill 目录](docs/codex-skills.zh-CN.md)和[品牌指南](docs/brand.zh-CN.md)。
 
 ## 参与贡献
 

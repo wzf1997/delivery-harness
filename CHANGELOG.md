@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Expand `init --codex` to install 17 clean-room, provider-neutral delivery workflow skills.
+- Add reusable acceptance evidence guidance and synthetic fixture-planning guidance.
+
 All notable changes follow Semantic Versioning.
 
 ## 0.1.0 - Unreleased

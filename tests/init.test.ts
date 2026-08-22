@@ -1,4 +1,4 @@
-import { mkdtempSync, readFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, readdirSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
@@ -12,6 +12,11 @@ describe("init", () => {
     const created = initializeProject(root, true);
     expect(created).toContain("deliveryguard.config.json");
     expect(readFileSync(join(root, ".agents/skills/deliveryguard-version/SKILL.md"), "utf8")).toContain("DeliveryGuard");
+    expect(
+      readdirSync(join(root, ".agents/skills"), { withFileTypes: true }).filter((entry) => entry.isDirectory()),
+    ).toHaveLength(17);
+    expect(created).toContain(".agents/skills/deliveryguard-acceptance/assets/report-template.md");
+    expect(created).toContain(".agents/skills/deliveryguard-fixture-plan/references/scenario-matrix.md");
   });
 
   it("refuses to overwrite existing files", () => {

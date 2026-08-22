@@ -45,7 +45,7 @@ function setGateExit(diagnostics: Diagnostic[]): void {
 program
   .command("init")
   .description("initialize DeliveryGuard without overwriting files")
-  .option("--codex", "add a Codex skill")
+  .option("--codex", "add the provider-neutral Codex skill suite")
   .action((options: { codex?: boolean }) => {
     const created = initializeProject(root(), options.codex === true);
     console.log(`Created ${created.join(", ")}`);

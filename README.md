@@ -38,7 +38,7 @@ npx deliveryguard check
 npx deliveryguard status
 ```
 
-Initialization is non-destructive: existing files are never overwritten. The generated project contains `deliveryguard.config.json`, `.deliveryguard/`, `openspec/changes/`, and optional Codex skills.
+Initialization is non-destructive: existing files are never overwritten. The generated project contains `deliveryguard.config.json`, `.deliveryguard/`, `openspec/changes/`, and 17 optional, provider-neutral Codex skills covering the full delivery workflow.
 
 ## Commands
 
@@ -77,7 +77,7 @@ The package exports `DeliveryGuardConfig`, `VersionRecord`, `EvidenceManifest`, 
 deliveryguard -C examples/synthetic-shop check
 ```
 
-Read the [architecture](docs/architecture.md), [configuration reference](docs/configuration.md), and [brand guide](docs/brand.md) next.
+Read the [architecture](docs/architecture.md), [configuration reference](docs/configuration.md), [Codex skill catalog](docs/codex-skills.md), and [brand guide](docs/brand.md) next.
 
 ## Contributing and security
 
