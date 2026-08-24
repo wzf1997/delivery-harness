@@ -84,6 +84,7 @@
     "vitest": "^4.0.15"
   },
   "publishConfig": {
+    "access": "public",
     "provenance": true
   }
 }
