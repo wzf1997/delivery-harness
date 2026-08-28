@@ -7,4 +7,4 @@
 - [x] Update package metadata, public documentation, provenance, safety boundaries, and changelog.
 - [x] Expand skill, initialization, behavior-contract, and sensitive-coordinate tests.
 - [x] Run repository checks, synthetic-project validation, package creation, and clean-project smoke validation.
-- [ ] Commit, push, and publish v0.2.0 when separately authorized.
+- [x] Commit, push, and publish v0.2.0 when separately authorized.
