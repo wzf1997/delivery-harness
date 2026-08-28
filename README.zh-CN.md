@@ -34,7 +34,7 @@ npx deliveryguard check
 npx deliveryguard status
 ```
 
-初始化不会覆盖已有文件。生成内容包括 `deliveryguard.config.json`、可复用的 `AGENTS.md` Harness 合同、`.deliveryguard/`、`openspec/changes/`，以及覆盖完整交付流程的 17 个供应商无关 Codex Skills。
+初始化不会覆盖已有文件。生成内容包括 `deliveryguard.config.json`、可复用的 `AGENTS.md` Harness 合同、`.deliveryguard/`、`openspec/changes/`，以及覆盖完整交付流程的 19 个供应商无关 Codex Skills，其中包括请求链路排查与经授权的真机测试指引。
 
 本仓库也把同一套 Skill 安装在 [`.agents/skills`](.agents/skills)，贡献者和 Codex 可以直接发现并使用。测试会确保项目内版本与 npm 初始化模板逐文件完全一致。
 
