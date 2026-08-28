@@ -1,0 +1,64 @@
+{
+  "$schema": "../../../schemas/evidence.schema.json",
+  "schemaVersion": 1,
+  "version": "v0.2.0",
+  "documents": [
+    {
+      "documentId": "diagnosis-real-device-skills",
+      "requirementIds": [
+        "request-diagnosis-contract",
+        "real-device-contract",
+        "public-boundary",
+        "package-contract"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "request-diagnosis-contract",
+      "description": "The request-diagnosis skill follows trace-first evidence and bounded no-trace conclusions",
+      "caseIds": ["request-diagnosis-validation"]
+    },
+    {
+      "id": "real-device-contract",
+      "description": "The real-device skill routes Android and iOS safely and reports every validation layer independently",
+      "caseIds": ["real-device-routing-validation"]
+    },
+    {
+      "id": "public-boundary",
+      "description": "All bundled skill resources remain clean-room and free of private coordinates",
+      "caseIds": ["sensitive-content-validation"]
+    },
+    {
+      "id": "package-contract",
+      "description": "The npm initializer installs all 19 skills and both conditional mobile runbooks",
+      "caseIds": ["package-install-validation"]
+    }
+  ],
+  "cases": [
+    {
+      "id": "request-diagnosis-validation",
+      "title": "Validate request-diagnosis structure and behavior contract",
+      "status": "pass",
+      "evidence": ["docs/evidence/v0.2.0/candidate-validation.md"]
+    },
+    {
+      "id": "real-device-routing-validation",
+      "title": "Validate cross-platform routing, blockers, layering, and authorization gates",
+      "status": "pass",
+      "evidence": ["docs/evidence/v0.2.0/candidate-validation.md"]
+    },
+    {
+      "id": "sensitive-content-validation",
+      "title": "Scan every textual skill resource and repository package input",
+      "status": "pass",
+      "evidence": ["docs/evidence/v0.2.0/candidate-validation.md"]
+    },
+    {
+      "id": "package-install-validation",
+      "title": "Pack version 0.2.0 and initialize a clean project with 19 skills",
+      "status": "pass",
+      "evidence": ["docs/evidence/v0.2.0/candidate-validation.md"]
+    }
+  ]
+}

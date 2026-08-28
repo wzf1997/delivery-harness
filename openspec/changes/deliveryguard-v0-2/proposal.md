@@ -17,7 +17,7 @@ Delivery teams need reusable guidance for diagnosing request-chain failures and 
 - Add or install a Mobile MCP server, Appium server, device farm, or private platform adapter.
 - Include fixed application, account, device, signing, environment, or business coordinates.
 - Change the DeliveryGuard CLI command surface or JSON Schema contracts.
-- Operate a physical device, publish a package, create a release, deploy, or write external data.
+- Operate a physical device or add automatic package publication, release, deployment, or external-data writes to the product. Release closure remains a separate authorized operation.
 
 ## Public contracts
 

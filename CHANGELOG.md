@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.0 - Unreleased
+## 0.2.0 - 2026-08-28
 
 - Expand `init --codex` from 17 to 19 clean-room, provider-neutral delivery workflow skills.
 - Add trace-first request diagnosis that separates client, transport, application-envelope, and downstream states.
