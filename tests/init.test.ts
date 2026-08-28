@@ -17,9 +17,17 @@ describe("init", () => {
     expect(readFileSync(join(root, ".agents/skills/deliveryguard-version/SKILL.md"), "utf8")).toContain("DeliveryGuard");
     expect(
       readdirSync(join(root, ".agents/skills"), { withFileTypes: true }).filter((entry) => entry.isDirectory()),
-    ).toHaveLength(17);
+    ).toHaveLength(19);
     expect(created).toContain(".agents/skills/deliveryguard-acceptance/assets/report-template.md");
     expect(created).toContain(".agents/skills/deliveryguard-fixture-plan/references/scenario-matrix.md");
+    expect(created).toContain(".agents/skills/deliveryguard-request-diagnosis/SKILL.md");
+    expect(created).toContain(".agents/skills/deliveryguard-real-device-test/SKILL.md");
+    expect(created).toContain(
+      ".agents/skills/deliveryguard-real-device-test/references/android-mobile-mcp.md",
+    );
+    expect(created).toContain(
+      ".agents/skills/deliveryguard-real-device-test/references/ios-appium-xcuitest.md",
+    );
   });
 
   it("refuses to overwrite existing files", () => {

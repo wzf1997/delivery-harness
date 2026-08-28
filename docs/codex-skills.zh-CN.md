@@ -1,6 +1,6 @@
 # Codex Skills
 
-`deliveryguard init --codex` 会安装 17 个仓库级 Skill。它们是对常用交付实践的 clean-room、供应商无关重写，不包含私有连接器、端点、环境坐标、业务 Schema、账号或生产操作。
+`deliveryguard init --codex` 会安装 19 个仓库级 Skill。它们是对常用交付实践的 clean-room、供应商无关重写，不包含私有连接器、端点、环境坐标、业务 Schema、账号或生产操作。
 
 DeliveryGuard 自身使用 [`.agents/skills`](../.agents/skills) 中的这套 Skill。npm 初始化模板镜像位于 `templates/codex`；自动化测试会拒绝两个目录之间的任何差异。
 
@@ -23,9 +23,11 @@ DeliveryGuard 自身使用 [`.agents/skills`](../.agents/skills) 中的这套 Sk
 | `deliveryguard-admin-import-plan` | 校验层级化导入计划 |
 | `deliveryguard-knowledge-capture` | 沉淀脱敏的仓库内知识 |
 | `deliveryguard-artifact-intake` | 校验并登记本地证据制品 |
+| `deliveryguard-request-diagnosis` | 定位页面、API 与多服务请求的首个失败边界 |
+| `deliveryguard-real-device-test` | 路由经授权的 Android 与 iOS 真机验证 |
 
 ## 安全边界
 
-这些 Skill 可以检查文件、准备计划、创建本地记录并运行 DeliveryGuard 校验，但不提供部署、网关、数据库、消息、CDN、真机平台或企业文档连接器。使用方可以在自己的仓库中增加适配器；任何外部写入仍需明确授权，并保留可独立验证的证据。
+这些 Skill 可以检查文件、准备计划、创建本地记录并运行 DeliveryGuard 校验，但不提供部署、网关、数据库、消息、CDN、真机平台、Mobile MCP、Appium 或企业文档连接器。真机 Skill 可以使用消费环境已经具备的 Mobile MCP 或本地 Appium/XCUITest 工具链，但默认不会安装或配置这些能力。设备变更及其他任何外部写入仍需明确授权，并保留可独立验证的证据。
 
 初始化不会覆盖已有文件。如果目标仓库已存在同名 Skill，应人工审阅并合并规则。
