@@ -8,4 +8,4 @@
 - [x] Mirror every changed skill resource into the npm initializer.
 - [x] Update package metadata, bilingual documentation, provenance, changelog, and tests.
 - [x] Run repository checks, synthetic-project validation, package creation, and clean-project smoke validation.
-- [ ] Commit, push, accept, and publish v0.3.0 only when separately authorized.
+- [x] Commit, push, accept, and publish v0.3.0 only when separately authorized.
