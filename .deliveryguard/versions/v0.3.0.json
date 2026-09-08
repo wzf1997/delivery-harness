@@ -15,14 +15,14 @@
   "openSpec": {
     "changeId": "deliveryguard-v0-3",
     "path": "openspec/changes/deliveryguard-v0-3",
-    "status": "ready"
+    "status": "applied"
   },
   "sources": [
     {
       "repositoryId": "deliveryguard",
-      "branch": "codex/deliveryguard-v0-3-harness-refresh",
-      "commit": "ccd3b20a5695ca514727c190e4d3e26861917a9a",
-      "status": "submitted"
+      "branch": "main",
+      "commit": "8e9d1348b90d4888927a6a861157b542dda58274",
+      "status": "merged"
     }
   ],
   "acceptance": {
@@ -30,6 +30,20 @@
     "evidence": ".deliveryguard/acceptance/v0.3.0/evidence.json",
     "report": "Candidate revision ccd3b20a5695ca514727c190e4d3e26861917a9a passed deterministic skill, media-helper, sensitive-content, package, and clean-initialization validation."
   },
-  "deployments": [],
-  "release": { "status": "pending" }
+  "deployments": [
+    {
+      "repositoryId": "deliveryguard",
+      "environmentId": "npm",
+      "branch": "main",
+      "commit": "8e9d1348b90d4888927a6a861157b542dda58274",
+      "status": "succeeded",
+      "anchor": "https://github.com/wzf1997/delivery-harness/actions/runs/34182902679",
+      "recordedAt": "2026-09-08T03:16:26Z"
+    }
+  ],
+  "release": {
+    "status": "published",
+    "anchor": "https://www.npmjs.com/package/deliveryguard/v/0.3.0",
+    "releasedAt": "2026-09-08T03:16:21.345Z"
+  }
 }

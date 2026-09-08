@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.3.0 - Unreleased
+## 0.3.0 - 2026-09-08
 
 - Expand `init --codex` from 19 to 20 clean-room, provider-neutral delivery workflow skills.
 - Add recording-based visual diagnosis with bounded source handling, timestamp-preserving frame extraction, dense transition review, and explicit pixel-evidence limits.
