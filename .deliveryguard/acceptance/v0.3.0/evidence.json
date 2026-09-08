@@ -1,0 +1,70 @@
+{
+  "$schema": "../../../schemas/evidence.schema.json",
+  "schemaVersion": 1,
+  "version": "v0.3.0",
+  "documents": [
+    {
+      "documentId": "harness-guidance-refresh",
+      "requirementIds": [
+        "video-diagnosis-contract",
+        "acceptance-routing-contract",
+        "public-boundary",
+        "package-contract"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "video-diagnosis-contract",
+      "description": "Recording diagnosis produces a bounded visual timeline without promoting pixels to runtime or root-cause proof",
+      "caseIds": ["video-skill-validation", "video-helper-runtime"]
+    },
+    {
+      "id": "acceptance-routing-contract",
+      "description": "Focused verification, formal acceptance, and report handoff remain distinct while independent checks continue around precise blockers",
+      "caseIds": ["acceptance-routing-validation"]
+    },
+    {
+      "id": "public-boundary",
+      "description": "All bundled skill resources remain clean-room and free of private coordinates",
+      "caseIds": ["sensitive-content-validation"]
+    },
+    {
+      "id": "package-contract",
+      "description": "The npm initializer installs all 20 skills and the new conditional resources",
+      "caseIds": ["package-install-validation"]
+    }
+  ],
+  "cases": [
+    {
+      "id": "video-skill-validation",
+      "title": "Validate recording-source routing, frame-review behavior, and evidence boundaries",
+      "status": "pass",
+      "evidence": ["docs/evidence/v0.3.0/candidate-validation.md"]
+    },
+    {
+      "id": "video-helper-runtime",
+      "title": "Extract a synthetic variable-time frame index without persisting the absolute source path",
+      "status": "pass",
+      "evidence": ["docs/evidence/v0.3.0/candidate-validation.md"]
+    },
+    {
+      "id": "acceptance-routing-validation",
+      "title": "Validate local, formal, and handoff routing plus independent blocker handling",
+      "status": "pass",
+      "evidence": ["docs/evidence/v0.3.0/candidate-validation.md"]
+    },
+    {
+      "id": "sensitive-content-validation",
+      "title": "Scan every textual skill resource and repository package input",
+      "status": "pass",
+      "evidence": ["docs/evidence/v0.3.0/candidate-validation.md"]
+    },
+    {
+      "id": "package-install-validation",
+      "title": "Pack version 0.3.0 and initialize a clean project with 20 skills",
+      "status": "pass",
+      "evidence": ["docs/evidence/v0.3.0/candidate-validation.md"]
+    }
+  ]
+}

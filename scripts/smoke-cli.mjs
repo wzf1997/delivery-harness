@@ -14,7 +14,7 @@ function run(args, expected) {
 }
 
 const version = run(["--version"], 0).trim();
-if (version !== "0.2.0") throw new Error(`CLI reported ${version}, expected 0.2.0`);
+if (version !== "0.3.0") throw new Error(`CLI reported ${version}, expected 0.3.0`);
 
 const self = run(["check"], 0);
 if (!self.includes("v0.1.0: implemented")) throw new Error("self-check did not report implemented");

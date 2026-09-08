@@ -1,6 +1,6 @@
 {
   "name": "deliveryguard",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Evidence-driven software delivery gates for specs, source, acceptance, repair, and release.",
   "type": "module",
   "license": "MIT",

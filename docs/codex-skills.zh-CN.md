@@ -1,6 +1,6 @@
 # Codex Skills
 
-`deliveryguard init --codex` 会安装 19 个仓库级 Skill。它们是对常用交付实践的 clean-room、供应商无关重写，不包含私有连接器、端点、环境坐标、业务 Schema、账号或生产操作。
+`deliveryguard init --codex` 会安装 20 个仓库级 Skill。它们是对常用交付实践的 clean-room、供应商无关重写，不包含私有连接器、端点、环境坐标、业务 Schema、账号或生产操作。
 
 DeliveryGuard 自身使用 [`.agents/skills`](../.agents/skills) 中的这套 Skill。npm 初始化模板镜像位于 `templates/codex`；自动化测试会拒绝两个目录之间的任何差异。
 
@@ -12,7 +12,7 @@ DeliveryGuard 自身使用 [`.agents/skills`](../.agents/skills) 中的这套 Sk
 | `deliveryguard-openspec-propose` | 创建提案与可验证任务 |
 | `deliveryguard-openspec-apply` | 实现任务并登记真实源码事实 |
 | `deliveryguard-openspec-archive` | 收口已完成的规格流程 |
-| `deliveryguard-acceptance` | 执行证据驱动验收 |
+| `deliveryguard-acceptance` | 路由局部验证与正式证据驱动验收 |
 | `deliveryguard-acceptance-handoff` | 准备验收交接稿，不发送消息 |
 | `deliveryguard-repair` | 管理 red/green/regression 修复证据 |
 | `deliveryguard-release` | 根据生产锚点完成发布收口 |
@@ -24,10 +24,11 @@ DeliveryGuard 自身使用 [`.agents/skills`](../.agents/skills) 中的这套 Sk
 | `deliveryguard-knowledge-capture` | 沉淀脱敏的仓库内知识 |
 | `deliveryguard-artifact-intake` | 校验并登记本地证据制品 |
 | `deliveryguard-request-diagnosis` | 定位页面、API 与多服务请求的首个失败边界 |
+| `deliveryguard-video-diagnosis` | 从录屏建立并复核带时间戳的视觉故障时间线 |
 | `deliveryguard-real-device-test` | 路由经授权的 Android 与 iOS 真机验证 |
 
 ## 安全边界
 
-这些 Skill 可以检查文件、准备计划、创建本地记录并运行 DeliveryGuard 校验，但不提供部署、网关、数据库、消息、CDN、真机平台、Mobile MCP、Appium 或企业文档连接器。真机 Skill 可以使用消费环境已经具备的 Mobile MCP 或本地 Appium/XCUITest 工具链，但默认不会安装或配置这些能力。设备变更及其他任何外部写入仍需明确授权，并保留可独立验证的证据。
+这些 Skill 可以检查文件、准备计划、创建本地记录并运行 DeliveryGuard 校验，但不提供部署、网关、数据库、消息、CDN、真机平台、Mobile MCP、Appium 或企业文档连接器。视频 Skill 可以使用消费环境已经具备的本地 FFmpeg 工具，但不会安装依赖、上传媒体，也不会把生成帧当作已完成审阅的证明。真机 Skill 可以使用消费环境已经具备的 Mobile MCP 或本地 Appium/XCUITest 工具链，但默认不会安装或配置这些能力。设备变更及其他任何外部写入仍需明确授权，并保留可独立验证的证据。
 
 初始化不会覆盖已有文件。如果目标仓库已存在同名 Skill，应人工审阅并合并规则。

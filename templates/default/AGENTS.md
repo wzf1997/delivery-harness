@@ -73,8 +73,12 @@ Before editing, inspect the branch, remotes, and working tree. Preserve existing
 
 Stage only task files. Do not push, merge, rebase, rewrite history, delete branches, or publish unless authorized.
 
+Keep tracked instructions and package metadata limited to shared project rules and explicitly supported tooling. Personal skills, personal branches, local debuggers, and private shell automation stay outside the repository unless the user explicitly requests project adoption. Cross-project personal preferences belong in global agent configuration.
+
 ## Verification and handoff
 
 Run the smallest checks that cover the changed behavior, then expand according to risk. Use repository-native commands and run `deliveryguard check` before making a lifecycle claim. Do not weaken assertions or hide failures. Distinguish regressions from existing failures and environment blockers.
+
+When one device, account, environment, or tool dependency is blocked, stop only the checks that depend on it. Continue independent in-scope checks and keep the blocked layer explicit; success elsewhere must not erase the blocker.
 
 Stop when the observable outcome and required local verification are complete, or when the next step lacks authorization, credentials, external coordination, or a product decision. The final response must state the result, changed artifacts, verification evidence, Git or external-operation status, and remaining risks or unverified areas.

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0 - Unreleased
+
+- Expand `init --codex` from 19 to 20 clean-room, provider-neutral delivery workflow skills.
+- Add recording-based visual diagnosis with bounded source handling, timestamp-preserving frame extraction, dense transition review, and explicit pixel-evidence limits.
+- Route focused local verification separately from formal full-version acceptance and report-only handoff.
+- Preserve progress across independent checks when one environment, device, account, or tool layer is blocked.
+- Keep personal workflow, local debuggers, and unsupported automation out of installed repository contracts by default.
+
 ## 0.2.0 - 2026-08-28
 
 - Expand `init --codex` from 17 to 19 clean-room, provider-neutral delivery workflow skills.

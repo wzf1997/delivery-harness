@@ -17,11 +17,15 @@ describe("init", () => {
     expect(readFileSync(join(root, ".agents/skills/deliveryguard-version/SKILL.md"), "utf8")).toContain("DeliveryGuard");
     expect(
       readdirSync(join(root, ".agents/skills"), { withFileTypes: true }).filter((entry) => entry.isDirectory()),
-    ).toHaveLength(19);
+    ).toHaveLength(20);
     expect(created).toContain(".agents/skills/deliveryguard-acceptance/assets/report-template.md");
     expect(created).toContain(".agents/skills/deliveryguard-fixture-plan/references/scenario-matrix.md");
     expect(created).toContain(".agents/skills/deliveryguard-request-diagnosis/SKILL.md");
     expect(created).toContain(".agents/skills/deliveryguard-real-device-test/SKILL.md");
+    expect(created).toContain(".agents/skills/deliveryguard-acceptance/references/local-verification.md");
+    expect(created).toContain(".agents/skills/deliveryguard-video-diagnosis/SKILL.md");
+    expect(created).toContain(".agents/skills/deliveryguard-video-diagnosis/references/frame-review.md");
+    expect(created).toContain(".agents/skills/deliveryguard-video-diagnosis/scripts/extract-frames.mjs");
     expect(created).toContain(
       ".agents/skills/deliveryguard-real-device-test/references/android-mobile-mcp.md",
     );
