@@ -72,6 +72,8 @@ Before editing, inspect the current branch, remotes, and working tree. Preserve 
 
 Stage only task files. Do not push, merge, rebase, rewrite history, delete branches, or publish unless the current request authorizes that action.
 
+Keep tracked instructions and package metadata limited to shared project rules and explicitly supported tooling. Personal skills, personal branches, local debuggers, and private shell automation stay outside the public repository unless the user explicitly requests project adoption.
+
 ## Verification
 
 Start with the smallest check that covers the changed behavior, then expand with risk. Keep schemas, semantic validators, CLI output, tests, templates, examples, and bilingual core documentation consistent.
@@ -87,6 +89,8 @@ pnpm pack
 Smoke-test the packed artifact in a clean temporary project when package contents or initialization change. Validate every changed Skill and confirm `.agents/skills` matches the packaged template. Run workspace and Git-history secret scans before public release.
 
 Never weaken assertions or hide failures to make checks pass. Distinguish a product regression from an existing failure or environment blocker. State any check not run and why.
+
+When one device, account, environment, or tool dependency is blocked, stop only the checks that depend on it. Continue independent in-scope checks and keep the blocked layer explicit; success elsewhere must not erase the blocker.
 
 ## Stop and handoff
 

@@ -15,7 +15,7 @@ const program = new Command();
 program
   .name("deliveryguard")
   .description("Evidence-driven software delivery gates")
-  .version("0.2.0")
+  .version("0.3.0")
   .option("-C, --root <path>", "project root", process.cwd())
   .exitOverride();
 

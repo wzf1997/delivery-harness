@@ -20,7 +20,7 @@ function filesBelow(root: string, directory = root): string[] {
   });
 }
 
-const textResourceExtensions = new Set([".json", ".md", ".txt", ".yaml", ".yml"]);
+const textResourceExtensions = new Set([".json", ".js", ".md", ".mjs", ".py", ".sh", ".txt", ".yaml", ".yml"]);
 
 function readSkillResource(file: string): string {
   return readFileSync(resolve(skillsRoot, file), "utf8");
@@ -29,13 +29,14 @@ function readSkillResource(file: string): string {
 describe("bundled Codex skills", () => {
   it("ships the complete provider-neutral workflow suite", () => {
     const names = skillDirectories();
-    expect(names).toHaveLength(19);
+    expect(names).toHaveLength(20);
     expect(names).toContain("deliveryguard-openspec-explore");
     expect(names).toContain("deliveryguard-fixture-plan");
     expect(names).toContain("deliveryguard-acceptance-handoff");
     expect(names).toContain("deliveryguard-knowledge-capture");
     expect(names).toContain("deliveryguard-request-diagnosis");
     expect(names).toContain("deliveryguard-real-device-test");
+    expect(names).toContain("deliveryguard-video-diagnosis");
   });
 
   it("uses valid skill names", () => {
@@ -105,6 +106,33 @@ describe("bundled Codex skills", () => {
     expect(ios).toContain("RemoteXPC");
     expect(ios).toContain("WebView inspection is disabled");
     expect(ios).toContain("reachable, trusted, and unlocked");
+  });
+
+  it("routes focused verification separately from formal acceptance", () => {
+    const skill = readSkillResource("deliveryguard-acceptance/SKILL.md");
+    const local = readSkillResource("deliveryguard-acceptance/references/local-verification.md");
+
+    expect(skill).toContain("references/local-verification.md");
+    expect(skill).toContain("full acceptance of one registered version");
+    expect(skill).toContain("deliveryguard-acceptance-handoff");
+    expect(skill).toContain("continue deterministic and otherwise independent checks");
+    expect(local).toContain("does not decide acceptance for an entire registered version");
+    expect(local).toContain("Do not create or update a full-version Evidence Manifest");
+  });
+
+  it("keeps video observation distinct from runtime and root-cause evidence", () => {
+    const skill = readSkillResource("deliveryguard-video-diagnosis/SKILL.md");
+    const sources = readSkillResource("deliveryguard-video-diagnosis/references/sources.md");
+    const review = readSkillResource("deliveryguard-video-diagnosis/references/frame-review.md");
+
+    expect(skill).toContain("Actually inspect the frames or player");
+    expect(skill).toContain("Use actual decoded-frame timestamps");
+    expect(skill).toContain("cannot by itself establish touch coordinates, network requests");
+    expect(skill).toContain("deliveryguard-request-diagnosis");
+    expect(sources).toContain("never a URL");
+    expect(sources).toContain("intentionally omits the absolute source path");
+    expect(review).toContain("before the transition, the divergent state, and the stable result or recovery");
+    expect(review).toContain("Sampling cannot recover information the source never captured");
   });
 
   it("keeps repository-discoverable skills identical to packaged templates", () => {

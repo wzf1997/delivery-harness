@@ -20,6 +20,8 @@ describe("agent instructions", () => {
       expect(starterInstructions).toContain(section);
     }
     expect(starterInstructions).toContain("planned -> specified -> implemented -> verified -> released");
+    expect(starterInstructions).toContain("Continue independent in-scope checks");
+    expect(starterInstructions).toContain("Personal skills, personal branches, local debuggers");
   });
 
   it("keeps repository-specific and public-safety rules", () => {

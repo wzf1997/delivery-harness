@@ -38,7 +38,7 @@ npx deliveryguard check
 npx deliveryguard status
 ```
 
-Initialization is non-destructive: existing files are never overwritten. The generated project contains `deliveryguard.config.json`, a reusable `AGENTS.md` harness contract, `.deliveryguard/`, `openspec/changes/`, and 19 optional, provider-neutral Codex skills covering the full delivery workflow, including request-chain diagnosis and authorized real-device test guidance.
+Initialization is non-destructive: existing files are never overwritten. The generated project contains `deliveryguard.config.json`, a reusable `AGENTS.md` harness contract, `.deliveryguard/`, `openspec/changes/`, and 20 optional, provider-neutral Codex skills covering the full delivery workflow, including request-chain diagnosis, recording-based visual diagnosis, and authorized real-device test guidance.
 
 This repository also installs the same suite at [`.agents/skills`](.agents/skills) so contributors and Codex can use it directly. Tests require that the repository copy and npm initializer templates remain byte-for-byte identical.
 
