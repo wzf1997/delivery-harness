@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "version": "v0.4.0",
+  "documents": [
+    {
+      "documentId": "candidate-review-workflows",
+      "requirementIds": [
+        "review-contract",
+        "public-boundary",
+        "package-contract"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "review-contract",
+      "description": "Candidate binding, routing and rejection checks",
+      "caseIds": [
+        "review-contract-validation"
+      ]
+    },
+    {
+      "id": "public-boundary",
+      "description": "Provider-neutral implementation, no private coordinates",
+      "caseIds": [
+        "public-boundary-validation"
+      ]
+    },
+    {
+      "id": "package-contract",
+      "description": "CLI, schemas, APIs and initialized guidance work from the packed package",
+      "caseIds": [
+        "package-contract-validation"
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "review-contract-validation",
+      "title": "Candidate binding, routing and rejection checks",
+      "status": "pass",
+      "evidence": [
+        "docs/evidence/v0.4.0/candidate-validation.md"
+      ]
+    },
+    {
+      "id": "public-boundary-validation",
+      "title": "Provider-neutral implementation, no private coordinates",
+      "status": "pass",
+      "evidence": [
+        "docs/evidence/v0.4.0/candidate-validation.md"
+      ]
+    },
+    {
+      "id": "package-contract-validation",
+      "title": "CLI, schemas, APIs and initialized guidance work from the packed package",
+      "status": "pass",
+      "evidence": [
+        "docs/evidence/v0.4.0/candidate-validation.md"
+      ]
+    }
+  ]
+}

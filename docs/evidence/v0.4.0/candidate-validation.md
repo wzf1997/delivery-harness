@@ -9,3 +9,5 @@ Validated locally on 2026-09-21 with Node 24 and pnpm 11.
 - Repository and initializer skill trees remain byte-identical. Public-content scans include source-project names and private-coordinate exclusions; no private source or history was imported.
 
 These checks establish local candidate acceptance, not an authenticated external review, model execution, remote Git verification or npm publication. Publication evidence will be recorded separately after the registry confirms it.
+
+Accepted source candidate: `affc554f2e089f76e24784d5cf2a83899d9be2e3`, pushed to `codex/deliveryguard-review-workflows`. Public history scan passed for 204 pre-existing text blobs; package integrity strings were distinguished from complete private names.
