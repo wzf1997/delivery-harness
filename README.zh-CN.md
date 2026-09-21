@@ -69,3 +69,7 @@ deliveryguard -C examples/synthetic-shop check
 ## 许可证
 
 [MIT](LICENSE) © 2026 wzf1997。
+
+## 交付候选审核流程
+
+可选接入完整候选审核、非生产 Hotfix、受限自动审核证据和测试冲突集成审核。使用 `deliveryguard review validate`，或登记记录后纳入 `check`。离线校验不授予外部操作权限。见[审核流程](docs/review-workflows.zh-CN.md)。

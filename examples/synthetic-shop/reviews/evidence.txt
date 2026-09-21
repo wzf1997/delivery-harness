@@ -1,0 +1,3 @@
+SYNTHETIC FIXTURE ONLY. No test runner, reviewer, model, remote, or deployment produced this file.
+Scenario: restore the documented keyboard focus indicator on a fictional button.
+The identifiers and evidence are inert inputs for exercising offline validation.

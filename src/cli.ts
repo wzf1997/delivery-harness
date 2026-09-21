@@ -7,6 +7,8 @@ import { hasErrors } from "./diagnostics.js";
 import { initializeProject } from "./init.js";
 import { readJson } from "./io.js";
 import { runRepairPhase, validateRepairCase } from "./repair.js";
+import { readReviewJson, reviewDigest, validateReview } from "./review.js";
+import type { ReviewPolicy, ReviewRecord } from "./review-types.js";
 import { validateSchema } from "./schemas.js";
 import type { DeliveryGuardConfig, Diagnostic, EvidenceManifest, RepairCase, VersionRecord } from "./types.js";
 import { findJsonFiles, validateConfig, validateEvidence, validateProject, validateVersion } from "./validate.js";
@@ -15,7 +17,7 @@ const program = new Command();
 program
   .name("deliveryguard")
   .description("Evidence-driven software delivery gates")
-  .version("0.3.0")
+  .version("0.4.0")
   .option("-C, --root <path>", "project root", process.cwd())
   .exitOverride();
 
@@ -108,6 +110,31 @@ acceptanceCommand
     const diagnostics = validateEvidence(root(), version, evidence);
     printDiagnostics(diagnostics, options.json === true);
     setGateExit(diagnostics);
+  });
+
+const reviewCommand = program.command("review").description("validate offline review evidence; never authorizes external actions");
+reviewCommand.command("digest")
+  .argument("<path>", "review record path")
+  .requiredOption("--policy <path>", "trusted review policy path")
+  .action((path: string, options: { policy: string }) => {
+    const record = readReviewJson<ReviewRecord>(root(), path);
+    const policy = readReviewJson<ReviewPolicy>(root(), options.policy);
+    const diagnostics = [...validateSchema("review-record", record), ...validateSchema("review-policy", policy)];
+    if (hasErrors(diagnostics)) { printDiagnostics(diagnostics, true); setGateExit(diagnostics); return; }
+    console.log(JSON.stringify({ candidateDigest: reviewDigest(record.candidate), policyDigest: reviewDigest(policy) }, null, 2));
+  });
+reviewCommand.command("validate")
+  .argument("<path>", "review record path")
+  .requiredOption("--policy <path>", "trusted review policy path")
+  .option("--json", "emit machine-readable output")
+  .action((path: string, options: { policy: string; json?: boolean }) => {
+    const result = validateReview(root(), readReviewJson<ReviewPolicy>(root(), options.policy), readReviewJson<ReviewRecord>(root(), path));
+    if (options.json) console.log(JSON.stringify(result, null, 2));
+    else {
+      console.log(`Review evidence route: ${result.route}; external action authorization: none`);
+      printDiagnostics(result.diagnostics, false);
+    }
+    setGateExit(result.diagnostics);
   });
 
 const repairCommand = program.command("repair").description("repair case commands");

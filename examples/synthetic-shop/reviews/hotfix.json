@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "candidate": {
+    "schemaVersion": 1,
+    "id": "demo-candidate",
+    "repositoryId": "storefront",
+    "task": {
+      "id": "demo-bug",
+      "summary": "Restore the documented keyboard focus indicator",
+      "acceptanceCriteria": [
+        "Keyboard focus is visible",
+        "Pointer behavior remains unchanged"
+      ],
+      "revision": "1",
+      "kind": "bug",
+      "changesRules": false,
+      "documentRevision": "demo-spec-1"
+    },
+    "author": "demo-contributor",
+    "branch": "feature/button-fix",
+    "baseCommit": "0000000000000000000000000000000000000000",
+    "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "tree": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "environmentId": "test",
+    "mode": "hotfix",
+    "files": [
+      {
+        "path": "src/ui/button.ts",
+        "changedLines": 8
+      }
+    ],
+    "sensitiveFindings": []
+  },
+  "checks": [
+    {
+      "id": "regression",
+      "candidateDigest": "5dbc89ff7957e6f34cbb0725e350bae09fbbea9966e1a4a4c991c8f66c6afd82",
+      "status": "pass",
+      "evidence": "reviews/evidence.txt"
+    }
+  ],
+  "decisions": []
+}

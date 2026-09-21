@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "synthetic-review",
+  "revision": "1",
+  "repositoryId": "storefront",
+  "branch": "feature/button-fix",
+  "environments": [{ "id": "test", "kind": "test" }, { "id": "production", "kind": "production" }],
+  "allowedPaths": ["src/ui", "tests"],
+  "requiredChecks": ["regression"],
+  "reviewers": ["demo-maintainer"],
+  "allowHotfix": true,
+  "autoReview": {
+    "enabled": false,
+    "allowedPaths": ["src/ui"],
+    "excludedPaths": ["src/ui/auth"],
+    "maxFiles": 5,
+    "maxChangedLines": 100,
+    "maxAgeHours": 24,
+    "minSuitability": 0.95,
+    "maxRisk": 0.05
+  }
+}

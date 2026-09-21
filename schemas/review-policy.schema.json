@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/wzf1997/delivery-harness/main/schemas/review-policy.schema.json",
+  "title": "DeliveryGuard review-policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "revision",
+    "repositoryId",
+    "branch",
+    "environments",
+    "allowedPaths",
+    "requiredChecks",
+    "reviewers",
+    "allowHotfix",
+    "autoReview"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "revision": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "repositoryId": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "branch": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "environments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "kind": {
+            "enum": [
+              "test",
+              "staging",
+              "production"
+            ]
+          }
+        }
+      },
+      "minItems": 1
+    },
+    "allowedPaths": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(?!.*(?:^|/)\\.{1,2}(?:/|$))[A-Za-z0-9_.@-]+(?:/[A-Za-z0-9_.@-]+)*$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "requiredChecks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "reviewers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "allowHotfix": {
+      "type": "boolean"
+    },
+    "autoReview": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "enabled",
+        "allowedPaths",
+        "excludedPaths",
+        "maxFiles",
+        "maxChangedLines",
+        "maxAgeHours",
+        "minSuitability",
+        "maxRisk"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "allowedPaths": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(?!.*(?:^|/)\\.{1,2}(?:/|$))[A-Za-z0-9_.@-]+(?:/[A-Za-z0-9_.@-]+)*$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "excludedPaths": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(?!.*(?:^|/)\\.{1,2}(?:/|$))[A-Za-z0-9_.@-]+(?:/[A-Za-z0-9_.@-]+)*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "maxFiles": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maxChangedLines": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maxAgeHours": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 24
+        },
+        "minSuitability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "maxRisk": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    }
+  }
+}

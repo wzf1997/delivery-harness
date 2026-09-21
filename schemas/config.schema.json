@@ -63,6 +63,15 @@
         "openspec": { "$ref": "#/$defs/repoPath" }
       }
     },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy", "records"],
+      "properties": {
+        "policy": { "$ref": "#/$defs/repoPath" },
+        "records": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/repoPath" } }
+      }
+    },
     "policies": {
       "type": "object",
       "additionalProperties": false,

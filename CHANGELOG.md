@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.0 - 2026-09-21
+
+- Add optional provider-neutral candidate review schemas, TypeScript API and `review digest` / `review validate` commands.
+- Bind checks and approvals to complete candidates and policies; support non-production Hotfix, bounded automatic-review evidence and human-reviewed integration records.
+- Include registered review records in project checks without changing lifecycle derivation or granting external-action authorization.
+- Add bilingual integration and trust-boundary documentation, synthetic examples, and bundled review/handoff guidance.
+
 ## 0.3.0 - 2026-09-08
 
 - Expand `init --codex` from 19 to 20 clean-room, provider-neutral delivery workflow skills.

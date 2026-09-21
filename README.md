@@ -88,3 +88,7 @@ Issues and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md), [S
 ## License
 
 [MIT](LICENSE) © 2026 wzf1997.
+
+## Candidate review workflows
+
+Opt into complete-candidate reviews, non-production Hotfix, bounded automatic-review evidence, and reviewed test integrations. Run `deliveryguard review validate` or register records in `check`. The offline validator never authorizes external actions. See [review workflows](docs/review-workflows.md).

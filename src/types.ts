@@ -32,6 +32,7 @@ export interface DeliveryGuardConfig {
     repairs: string;
     openspec: string;
   };
+  review?: { policy: string; records: string[] };
   policies: {
     requireOpenSpec: boolean;
     requireAcceptanceBeforeRelease: boolean;

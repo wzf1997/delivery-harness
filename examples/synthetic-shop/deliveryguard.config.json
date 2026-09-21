@@ -18,6 +18,7 @@
     "repairs": ".deliveryguard/repairs",
     "openspec": "openspec/changes"
   },
+  "review": { "policy": "reviews/policy.json", "records": ["reviews/hotfix.json"] },
   "policies": {
     "requireOpenSpec": true,
     "requireAcceptanceBeforeRelease": true,

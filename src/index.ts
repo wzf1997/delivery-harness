@@ -7,3 +7,7 @@ export { runRepairPhase, validateRepairCase } from "./repair.js";
 export function defineConfig<T>(config: T): T {
   return config;
 }
+
+export * from "./review-types.js";
+export { reviewDigest, validateReview } from "./review.js";
+export type { ReviewResult } from "./review.js";

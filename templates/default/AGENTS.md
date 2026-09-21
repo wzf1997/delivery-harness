@@ -82,3 +82,7 @@ Run the smallest checks that cover the changed behavior, then expand according t
 When one device, account, environment, or tool dependency is blocked, stop only the checks that depend on it. Continue independent in-scope checks and keep the blocked layer explicit; success elsewhere must not erase the blocker.
 
 Stop when the observable outcome and required local verification are complete, or when the next step lacks authorization, credentials, external coordination, or a product decision. The final response must state the result, changed artifacts, verification evidence, Git or external-operation status, and remaining risks or unverified areas.
+
+## Optional candidate reviews
+
+When project configuration registers review records, prepare one complete task-and-code candidate and run `deliveryguard review validate` and `deliveryguard check`. Preserve human rejections and recompute checks and approvals after candidate changes. Non-production Hotfix does not grant production access. A consistent offline record does not authenticate reviewers or authorize push/deploy; trusted integrations must bind it to actual code and evidence.

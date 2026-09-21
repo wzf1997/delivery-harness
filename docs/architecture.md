@@ -26,3 +26,7 @@ Acceptance and release remain orthogonal facts even though stage derivation is s
 All paths must be repository-relative. Repair commands are untrusted repository content and run only after an explicit `repair run`; `check` never executes them. Commands are argv arrays passed directly to the operating system with `shell: false`, bounded working directories, and timeouts.
 
 Document references, deployment anchors, and remote repository URLs are opaque evidence. DeliveryGuard validates their presence and relationships but does not authenticate external systems.
+
+## Optional review gate
+
+The [review workflow validator](review-workflows.md) checks candidate-bound checks, policy-bound decisions and non-production fast paths. Registered review failures make project `check` fail without changing derived lifecycle stages. Provider adapters remain outside the core and must authenticate identities, collect actual Git/model facts and enforce external-action authorization.

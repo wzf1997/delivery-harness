@@ -1,0 +1,28 @@
+{
+  "$schema": "../../schemas/version.schema.json",
+  "schemaVersion": 1,
+  "version": "v0.4.0",
+  "title": "DeliveryGuard candidate review workflows",
+  "documents": [
+    {
+      "id": "candidate-review-workflows",
+      "type": "product-requirement",
+      "title": "DeliveryGuard v0.4.0 candidate review workflows",
+      "ref": "docs/requirements/v0.4.0.md",
+      "primary": true
+    }
+  ],
+  "openSpec": {
+    "changeId": "deliveryguard-v0-4",
+    "path": "openspec/changes/deliveryguard-v0-4",
+    "status": "applied"
+  },
+  "sources": [],
+  "acceptance": {
+    "status": "pending"
+  },
+  "deployments": [],
+  "release": {
+    "status": "pending"
+  }
+}

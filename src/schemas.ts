@@ -7,7 +7,7 @@ import type { FormatsPlugin } from "ajv-formats";
 
 import type { Diagnostic } from "./types.js";
 
-export type SchemaName = "config" | "version" | "evidence" | "repair-case";
+export type SchemaName = "config" | "version" | "evidence" | "repair-case" | "review-policy" | "review-record";
 
 const require = createRequire(import.meta.url);
 const loadedFormats = require("ajv-formats") as FormatsPlugin | { default: FormatsPlugin };

@@ -4,6 +4,8 @@ import { extname, resolve } from "node:path";
 import { error, hasErrors, warning } from "./diagnostics.js";
 import { readJson, resolveInside } from "./io.js";
 import { validateRepairCase } from "./repair.js";
+import { readReviewJson, validateReview } from "./review.js";
+import type { ReviewPolicy, ReviewRecord } from "./review-types.js";
 import { validateSchema } from "./schemas.js";
 import { deriveVersionStatus } from "./status.js";
 import type {
@@ -172,6 +174,30 @@ export function validateProject(root = process.cwd()): ProjectValidation {
       diagnostics.push(...validateRepairCase(root, readJson<RepairCase>(file)));
     } catch (cause) {
       diagnostics.push(error("repair.read", String(cause), file));
+    }
+  }
+  if (config.review) {
+    try {
+      const policy = readReviewJson<ReviewPolicy>(root, config.review.policy);
+      diagnostics.push(...validateSchema("review-policy", policy));
+      for (const path of config.review.records) {
+        try {
+          const record = readReviewJson<ReviewRecord>(root, path);
+          diagnostics.push(...validateReview(root, policy, record).diagnostics.map((item) => ({ ...item, path })));
+          if (!config.repositories.some((item) => item.id === record.candidate?.repositoryId)) {
+            diagnostics.push(error("review.repository-unknown", "review repository is not registered", path));
+          }
+          const configured = config.environments.find((item) => item.id === record.candidate?.environmentId);
+          const policyEnvironment = policy.environments?.find((item) => item.id === record.candidate?.environmentId);
+          if (!configured || configured.kind !== policyEnvironment?.kind) {
+            diagnostics.push(error("review.environment-mismatch", "review environment must agree with project configuration", path));
+          }
+        } catch (cause) {
+          diagnostics.push(error("review.read", String(cause), path));
+        }
+      }
+    } catch (cause) {
+      diagnostics.push(error("review.policy-read", String(cause), config.review.policy));
     }
   }
   diagnostics.push(...versions.flatMap((item) => item.diagnostics));
