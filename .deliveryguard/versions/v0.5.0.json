@@ -21,7 +21,7 @@
     {
       "repositoryId": "deliveryguard",
       "branch": "codex/deliveryguard-review-workflows",
-      "commit": "bb2c19eaa219a66677693922b5c8446e88b0c12f",
+      "commit": "4de6fec06281e636aa237d1e9bbbad2d9065f7fc",
       "status": "submitted"
     }
   ],
@@ -30,8 +30,20 @@
     "evidence": ".deliveryguard/acceptance/v0.5.0/evidence.json",
     "report": "114 tests and clean packed installation passed; no live Jev request. See docs/evidence/v0.5.0/candidate-validation.md."
   },
-  "deployments": [],
+  "deployments": [
+    {
+      "repositoryId": "deliveryguard",
+      "environmentId": "npm",
+      "branch": "codex/deliveryguard-review-workflows",
+      "commit": "4de6fec06281e636aa237d1e9bbbad2d9065f7fc",
+      "status": "succeeded",
+      "anchor": "https://github.com/wzf1997/delivery-harness/actions/runs/35575154695",
+      "recordedAt": "2026-09-21T07:58:50.399Z"
+    }
+  ],
   "release": {
-    "status": "pending"
+    "status": "published",
+    "anchor": "https://www.npmjs.com/package/deliveryguard/v/0.5.0",
+    "releasedAt": "2026-09-21T07:58:50.399Z"
   }
 }
