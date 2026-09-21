@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "version": "v0.5.0",
+  "documents": [
+    {
+      "documentId": "jev-integration",
+      "requirementIds": [
+        "jev-adapter",
+        "user-credentials",
+        "package-contract"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "jev-adapter",
+      "description": "jev adapter",
+      "caseIds": [
+        "jev-adapter-validation"
+      ]
+    },
+    {
+      "id": "user-credentials",
+      "description": "user credentials",
+      "caseIds": [
+        "user-credentials-validation"
+      ]
+    },
+    {
+      "id": "package-contract",
+      "description": "package contract",
+      "caseIds": [
+        "package-contract-validation"
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "jev-adapter-validation",
+      "title": "jev adapter",
+      "status": "pass",
+      "evidence": [
+        "docs/evidence/v0.5.0/candidate-validation.md"
+      ]
+    },
+    {
+      "id": "user-credentials-validation",
+      "title": "user credentials",
+      "status": "pass",
+      "evidence": [
+        "docs/evidence/v0.5.0/candidate-validation.md"
+      ]
+    },
+    {
+      "id": "package-contract-validation",
+      "title": "package contract",
+      "status": "pass",
+      "evidence": [
+        "docs/evidence/v0.5.0/candidate-validation.md"
+      ]
+    }
+  ]
+}
