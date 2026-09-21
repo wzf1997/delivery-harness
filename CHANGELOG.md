@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.0 - 2026-09-21
+
+- Add an explicit, optional Jev adapter and preview-first CLI with bounded requests, strict Noul parsing, fail-closed routing and non-overwriting evidence records.
+- Keep core validation offline; document payload disclosure, provider setup and live-verification limits in English and Chinese.
+
 ## 0.4.0 - 2026-09-21
 
 - Add optional provider-neutral candidate review schemas, TypeScript API and `review digest` / `review validate` commands.

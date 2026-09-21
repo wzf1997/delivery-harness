@@ -1,0 +1,28 @@
+{
+  "$schema": "../../schemas/version.schema.json",
+  "schemaVersion": 1,
+  "version": "v0.5.0",
+  "title": "DeliveryGuard optional Jev adapter",
+  "documents": [
+    {
+      "id": "jev-integration",
+      "type": "product-requirement",
+      "title": "Optional Jev adapter and user credentials",
+      "ref": "docs/requirements/v0.5.0.md",
+      "primary": true
+    }
+  ],
+  "openSpec": {
+    "changeId": "deliveryguard-v0-5",
+    "path": "openspec/changes/deliveryguard-v0-5",
+    "status": "applied"
+  },
+  "sources": [],
+  "acceptance": {
+    "status": "pending"
+  },
+  "deployments": [],
+  "release": {
+    "status": "pending"
+  }
+}

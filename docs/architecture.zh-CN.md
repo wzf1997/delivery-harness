@@ -2,7 +2,7 @@
 
 [English](architecture.md)
 
-DeliveryGuard 是文件驱动的校验工具。它读取仓库内事实、推导生命周期阶段，并为开发者、CI 和 Coding Agent 输出诊断；本身不包含网络连接器或特权运行时。
+DeliveryGuard 是文件驱动的校验工具。它读取仓库内事实、推导生命周期阶段，并为开发者、CI 和 Coding Agent 输出诊断；校验核心不包含网络连接器或特权运行时。可选的 [Jev 适配器](jev.zh-CN.md)仅通过显式命令或 API 调用联网。
 
 ## 分层
 

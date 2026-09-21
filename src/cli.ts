@@ -17,7 +17,7 @@ const program = new Command();
 program
   .name("deliveryguard")
   .description("Evidence-driven software delivery gates")
-  .version("0.4.0")
+  .version("0.5.0")
   .option("-C, --root <path>", "project root", process.cwd())
   .exitOverride();
 
@@ -112,7 +112,7 @@ acceptanceCommand
     setGateExit(diagnostics);
   });
 
-const reviewCommand = program.command("review").description("validate offline review evidence; never authorizes external actions");
+const reviewCommand = program.command("review").description("review evidence and optional explicit provider evaluation; never authorizes external actions");
 reviewCommand.command("digest")
   .argument("<path>", "review record path")
   .requiredOption("--policy <path>", "trusted review policy path")
@@ -135,6 +135,45 @@ reviewCommand.command("validate")
       printDiagnostics(result.diagnostics, false);
     }
     setGateExit(result.diagnostics);
+  });
+
+reviewCommand.command("jev")
+  .description("preview or explicitly send a minimal task summary to the optional Jev adapter")
+  .argument("<path>", "review record path")
+  .requiredOption("--policy <path>", "trusted review policy path")
+  .option("--model <id>", "Jev model alias or pinned version", "jev-latest")
+  .option("--send", "send the previewed summary to TypeSafe using TYPESAFE_API_KEY")
+  .option("--output <directory>", "new root-relative output directory; its parent must exist")
+  .option("--json", "emit machine-readable output")
+  .action(async (path: string, options: { policy: string; model: string; send?: boolean; output?: string; json?: boolean }) => {
+    const { prepareJevReview, runJevReview } = await import("./adapters/jev.js");
+    const { jevOutputDirectory, saveJevReview } = await import("./adapters/jev-files.js");
+    const policy = readReviewJson<ReviewPolicy>(root(), options.policy);
+    const record = readReviewJson<ReviewRecord>(root(), path);
+    const preview = prepareJevReview(root(), policy, record, options.model);
+    if (!options.send || !preview.ok) {
+      console.log(JSON.stringify({ ...preview, sent: false }, null, 2));
+      if (!preview.ok) process.exitCode = 1;
+      return;
+    }
+    if (!options.output) throw new Error("--send requires --output with a new directory inside the project");
+    jevOutputDirectory(root(), options.output);
+    const result = await runJevReview(root(), policy, record, {
+      ...(process.env.TYPESAFE_API_KEY ? { apiKey: process.env.TYPESAFE_API_KEY } : {}),
+      model: options.model, evidencePath: `${options.output}/evidence.json`,
+    });
+    // Do not write a model decision against input files changed during the request.
+    if (JSON.stringify(policy) !== JSON.stringify(readReviewJson(root(), options.policy)) ||
+        JSON.stringify(record) !== JSON.stringify(readReviewJson(root(), path))) {
+      throw new Error("input files changed during Jev evaluation; no output was written");
+    }
+    const output = saveJevReview(root(), options.output, policy, record, result);
+    if (options.json) console.log(JSON.stringify({ status: result.status, diagnostics: result.diagnostics, record: output, authorizesExternalAction: false }, null, 2));
+    else {
+      console.log(`Jev: ${result.status}; review record: ${output}; external action authorization: none`);
+      printDiagnostics(result.diagnostics, false);
+    }
+    if (result.status !== "approved") process.exitCode = 1;
   });
 
 const repairCommand = program.command("repair").description("repair case commands");

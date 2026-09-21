@@ -120,10 +120,7 @@ export function validateReview(root: string, policy: ReviewPolicy, record: Revie
   const human = valid.find((item) => item.kind === "human" && policy.reviewers.includes(item.reviewer) && item.reviewer !== candidate.author);
   if (human) { artifact(human.evidence); return finish("human"); }
   const auto = policy.autoReview;
-  const eligible = auto.enabled && candidate.mode === "delivery" && !candidate.task.changesRules &&
-    environment?.kind !== "production" && candidate.sensitiveFindings.length === 0 &&
-    paths.every((path) => matches(path, auto.allowedPaths) && !matches(path, auto.excludedPaths)) &&
-    paths.length <= auto.maxFiles && candidate.files.reduce((sum, file) => sum + file.changedLines, 0) <= auto.maxChangedLines;
+  const eligible = automaticScopeEligible(policy, candidate);
   const automatic = eligible ? valid.find((item) => item.kind === "automatic" && item.model?.trim() &&
     item.suitability !== undefined && item.suitability >= auto.minSuitability && item.risk !== undefined && item.risk <= auto.maxRisk &&
     now.getTime() - Date.parse(item.recordedAt) <= auto.maxAgeHours * 3_600_000 &&
@@ -131,4 +128,25 @@ export function validateReview(root: string, policy: ReviewPolicy, record: Revie
   if (automatic) { artifact(automatic.evidence); return finish("automatic"); }
   fail("approval-required", "a current human approval is required; automatic evidence is absent, stale, ineligible, or below threshold");
   return finish("blocked");
+}
+
+function automaticScopeEligible(policy: ReviewPolicy, candidate: ReviewCandidate): boolean {
+  const auto = policy.autoReview;
+  const paths = candidate.files.map((item) => item.path);
+  const environment = policy.environments.find((item) => item.id === candidate.environmentId);
+  return auto.enabled && candidate.mode === "delivery" && !candidate.task.changesRules &&
+    environment?.kind !== "production" && candidate.sensitiveFindings.length === 0 &&
+    paths.every((path) => matches(path, auto.allowedPaths) && !matches(path, auto.excludedPaths)) &&
+    paths.length <= auto.maxFiles && candidate.files.reduce((sum, file) => sum + file.changedLines, 0) <= auto.maxChangedLines;
+}
+
+/** Offline preflight shared by optional model adapters; no fabricated approval is needed. */
+export function preflightAutomaticReview(root: string, policy: ReviewPolicy, record: ReviewRecord, now = new Date()): Diagnostic[] {
+  const schema = [...validateSchema("review-policy", policy), ...validateSchema("review-record", record)];
+  if (hasErrors(schema)) return schema;
+  const diagnostics = validateReview(root, policy, record, now).diagnostics.filter((item) => item.code !== "review.approval-required");
+  if (!automaticScopeEligible(policy, record.candidate)) {
+    diagnostics.push(error("review.automatic-ineligible", "automatic review requires enabled non-production delivery, eligible scope and no sensitive findings or rule changes"));
+  }
+  return diagnostics;
 }

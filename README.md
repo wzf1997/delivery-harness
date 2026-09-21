@@ -92,3 +92,7 @@ Issues and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md), [S
 ## Candidate review workflows
 
 Opt into complete-candidate reviews, non-production Hotfix, bounded automatic-review evidence, and reviewed test integrations. Run `deliveryguard review validate` or register records in `check`. The offline validator never authorizes external actions. See [review workflows](docs/review-workflows.md).
+
+### Optional Jev integration
+
+Preview a minimal request with `deliveryguard review jev`; explicitly add `--send` to call TypeSafe using an environment-provided key. [Setup, privacy and failure behavior](docs/jev.md). Core checks stay offline.

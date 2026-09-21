@@ -73,3 +73,7 @@ deliveryguard -C examples/synthetic-shop check
 ## 交付候选审核流程
 
 可选接入完整候选审核、非生产 Hotfix、受限自动审核证据和测试冲突集成审核。使用 `deliveryguard review validate`，或登记记录后纳入 `check`。离线校验不授予外部操作权限。见[审核流程](docs/review-workflows.zh-CN.md)。
+
+### 可选 Jev 接入
+
+使用 `deliveryguard review jev` 预览最小请求，显式增加 `--send` 才使用环境密钥调用 TypeSafe。[配置、数据范围和失败处理](docs/jev.zh-CN.md)。核心检查保持离线。

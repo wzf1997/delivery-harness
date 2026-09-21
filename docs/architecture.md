@@ -2,7 +2,7 @@
 
 [简体中文](architecture.zh-CN.md)
 
-DeliveryGuard is a file-based validation toolkit. It consumes repository facts, derives lifecycle stages, and emits diagnostics for people, CI, and coding agents. It has no network connector or privileged runtime.
+DeliveryGuard is a file-based validation toolkit. It consumes repository facts, derives lifecycle stages, and emits diagnostics for people, CI, and coding agents. The validation core has no network connector or privileged runtime. The optional [Jev adapter](jev.md) performs a network request only through an explicit command or API call.
 
 ## Layers
 

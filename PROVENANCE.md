@@ -10,4 +10,6 @@ The bundled Codex skills are clean-room abstractions of recurring workflow class
 
 The installed `AGENTS.md` contract was independently rewritten around generic authorization, evidence, versioning, acceptance, repair, release, Git safety, and completion principles. It contains no source repository map, organization-specific policy, private system name, or operational coordinate.
 
-Candidate review workflows are independently implemented as provider-neutral JSON evidence contracts. They contain no source-project code, platform adapters, organization roles, model vendor, private diff, identity, handoff snapshot, or deployment record. The review examples and scores are synthetic.
+Candidate review workflows are independently implemented as provider-neutral JSON evidence contracts. The core contains no source-project code, private platform adapters, organization roles, private diff, identity, handoff snapshot, or deployment record. The review examples and scores are synthetic.
+
+The optional Jev adapter was independently implemented against TypeSafe public documentation. Only an explicit caller action sends a bounded summary to the official API; no private adapter, source diff or credential is bundled. Synthetic transport tests do not claim live provider acceptance.

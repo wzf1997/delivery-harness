@@ -2,7 +2,7 @@ import { defineConfig } from "tsup";
 
 export default defineConfig([
   {
-    entry: ["src/index.ts"],
+    entry: { index: "src/index.ts", jev: "src/adapters/jev.ts" },
     format: ["esm"],
     dts: true,
     sourcemap: true,

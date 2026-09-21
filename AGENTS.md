@@ -62,7 +62,7 @@ Repair commands are untrusted argv arrays. Execute them only through an explicit
 
 - Keep examples, screenshots, evidence, names, URLs, identifiers, and commits fictional or explicitly public. Use `.invalid` domains for synthetic hosts.
 - Never copy proprietary source, private documents, messages, screenshots, production data, credentials, internal repository history, or absolute user paths.
-- Do not add deployment, messaging, business-data, credential, or proprietary platform integrations to the core.
+- Do not add deployment, messaging, business-data, credential, or proprietary platform integrations to the core. The explicitly adopted optional Jev adapter uses only the public API and environment credentials; core validation must remain offline.
 - Bundled skills may describe provider-neutral plans and evidence contracts, but must not embed private adapters, endpoints, environment coordinates, business schemas, or automatic external writes.
 - All accepted project paths must be repository-relative and constrained to the selected root.
 
