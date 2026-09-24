@@ -1,3 +1,5 @@
+
+
 <p align="center">
   <img src="docs/assets/deliveryguard-hero.webp" alt="DeliveryGuard blue robotic cat mascot guarding an evidence-driven software delivery path" width="100%" />
 </p>
@@ -37,6 +39,8 @@ npx deliveryguard init --codex
 npx deliveryguard check
 npx deliveryguard status
 ```
+
+The CLI requires Node.js `^22.19.0` or `>=24.0.0`.
 
 Initialization is non-destructive: existing files are never overwritten. The generated project contains `deliveryguard.config.json`, a reusable `AGENTS.md` harness contract, `.deliveryguard/`, `openspec/changes/`, and 20 optional, provider-neutral Codex skills covering the full delivery workflow, including request-chain diagnosis, recording-based visual diagnosis, and authorized real-device test guidance.
 
